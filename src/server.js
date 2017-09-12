@@ -1,9 +1,7 @@
 // Import required files
 const http = require('http');
 const htmlHandler = require('./htmlResponses.js');
-const textHandler = require('./textResponses.js');
-const jsonHandler = require('./jsonResponses.js');
-const imageHandler = require('./imageResponses.js');
+const mediaHandler = require('./mediaResponses.js');
 
 // Chose which port to use
 const PORT = process.env.PORT || process.env.NODE_PORT || 3000;
@@ -16,27 +14,30 @@ const onRequest = (request, response) => {
     case '/':
       htmlHandler.getIndex(request, response);
       break;
-    case '/page2':
-      htmlHandler.getPage2(request, response);
-      break;
-    case '/hello':
-      textHandler.getHello(request, response);
-      break;
-    case '/time':
-      textHandler.getTime(request, response);
-      break;
-    case '/helloJSON':
-      jsonHandler.getHelloJSON(request, response);
-      break;
-    case '/timeJSON':
-      jsonHandler.getTimeJSON(request, response);
-      break;
-    case '/dankmemes':
-      imageHandler.getSponge(request, response);
+    case '/party.mp4':
+      mediaHandler.getParty(request, response);
       break;
     default:
       htmlHandler.getIndex(request, response);
       break;
+   /* case '/page2':
+     htmlHandler.getPage2(request, response);
+     break;
+   case '/hello':
+     textHandler.getHello(request, response);
+     break;
+   case '/time':
+     textHandler.getTime(request, response);
+     break;
+   case '/helloJSON':
+     jsonHandler.getHelloJSON(request, response);
+     break;
+   case '/timeJSON':
+     jsonHandler.getTimeJSON(request, response);
+     break;
+   case '/dankmemes':
+     imageHandler.getSponge(request, response);
+     break; */
   }
 };
 
