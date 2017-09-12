@@ -1,11 +1,10 @@
 const fs = require('fs'); // Require the file system module
 const path = require('path');
 
-// const sponge = fs.readFileSync(`${__dirname}/../client/spongegar.png`);
-
-// Respond to any requests
-const getParty = (request, response) => {
-  const file = path.resolve(__dirname, '../client/party.mp4'); // Find the file
+// Fetches and streams a file
+const fetchAndStreamFile = (request, response, fileName, mediaType) => {
+  // Resolve the file path
+  const file = path.resolve(__dirname, fileName);
 
   // Check file status
   fs.stat(file, (err, stats) => {
@@ -45,7 +44,7 @@ const getParty = (request, response) => {
       'Content-Range': `bytes ${start}-${end}/${total}`,
       'Accept-Ranges': 'bytes',
       'Content-Length': chunksize,
-      'Content-Type': 'video/mp4',
+      'Content-Type': mediaType,
     });
 
     // Create a stream
@@ -65,5 +64,20 @@ const getParty = (request, response) => {
   });
 };
 
+// Respond to any requests
+const getParty = (request, response) => {
+  fetchAndStreamFile(request, response, '../client/party.mp4', 'video/mp4'); // Fetch and stream the file
+};
+
+const getBling = (request, response) => {
+  fetchAndStreamFile(request, response, '../client/bling.mp3', 'audio/mpeg'); // Fetch and stream the file
+};
+
+const getBird = (request, response) => {
+  fetchAndStreamFile(request, response, '../client/bird.mp4', 'video/mp4'); // Fetch and stream the file
+};
+
 // Make exports
 module.exports.getParty = getParty;
+module.exports.getBling = getBling;
+module.exports.getBird = getBird;

@@ -17,27 +17,16 @@ const onRequest = (request, response) => {
     case '/party.mp4':
       mediaHandler.getParty(request, response);
       break;
+    case '/page2':
+      mediaHandler.getBling(request, response);
+      break;
+    case '/page3':
+      mediaHandler.getBird(request, response);
+      break;
+
     default:
       htmlHandler.getIndex(request, response);
       break;
-   /* case '/page2':
-     htmlHandler.getPage2(request, response);
-     break;
-   case '/hello':
-     textHandler.getHello(request, response);
-     break;
-   case '/time':
-     textHandler.getTime(request, response);
-     break;
-   case '/helloJSON':
-     jsonHandler.getHelloJSON(request, response);
-     break;
-   case '/timeJSON':
-     jsonHandler.getTimeJSON(request, response);
-     break;
-   case '/dankmemes':
-     imageHandler.getSponge(request, response);
-     break; */
   }
 };
 
